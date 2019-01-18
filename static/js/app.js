@@ -28,17 +28,12 @@ function buildMetadata(sample) {
     d3.select("#sample-metadata").append("li").text(`Wfreq: ${wfreq}`);
   });  
 }
-  
-    // HINT: You will need to use slice() to grab the top 10 sample_values,
-    // otu_ids, and labels (10 each).
-
 function buildCharts(sample) {
-  /* data route */
+  // data route 
   var url = `/samples/${sample}`;
   // Use `d3.json` to fetch the data
   d3.json(url).then(function(response){
     console.log(response);
-    // Create a Pie Chart
     console.log(response.sample_values);
     console.log(response.otu_ids);
     var trace1 = [{
@@ -73,16 +68,12 @@ function buildCharts(sample) {
     }
     //Plot the chart to a dive tag with id "pie"
     Plotly.newPlot("bubble",trace2,layout);
-
-
-
   });
 }
 
 function init() {
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
-
   // Use the list of sample names to populate the select options
   d3.json("/names").then((sampleNames) => {
     sampleNames.forEach((sample) => {
